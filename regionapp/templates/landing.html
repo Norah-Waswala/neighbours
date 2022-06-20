@@ -1,0 +1,40 @@
+{% load bootstrap3 %}
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+   
+
+  {% block styles %}
+    {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz@6..96&family=Josefin+Sans&family=Rubik+Moonrocks&family=Rye&family=Satisfy&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    {% endblock %}
+
+</head>
+<body>
+{% block content %}
+<div class="hero-image">
+    <div class="log">
+        <a href="{% url 'login' %}">
+            <button>Register</button>
+          </a>
+      
+        
+     </div>
+ <div class="hero-text">
+     <h2 >Locate-Meter</h2>
+     
+   
+     <p>"Everything everywhere"</p>
+         <p>we watch, we alert, we inform </p>
+         
+ </div>
+
+</div>
+{% endblock %}
+</body>
+</html>
