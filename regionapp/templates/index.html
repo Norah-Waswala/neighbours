@@ -1,8 +1,63 @@
 {% extends 'base.html' %}
-{% load static %}
 {% load crispy_forms_tags %}
-
 {% block content %}
-<h1>hello</h1>
+<div class="container" id="locations" style="margin-bottom: 10px;">
+    <div class="reports">
+    <a href="{% url 'new-region' %} " class="btn btn-sm btn-info mb-2"> New Region</a>
+    <a href=" " class="btn btn-sm btn-info mb-2"> Join Region</a>
+    <a href="{% url 'new-region' %} " class="btn btn-sm btn-info mb-2"> Post Report</a>
+    <div class="search" style="float: right; ">
+        <form class="form-inline" method="get" action="{% url 'search' %}" style="border: 0em; ">
+            {% csrf_token %}
+            
+                <input class="form-control" type="text" placeholder="Search" name="title" aria-label="Search"  >
+           
+        </form>
+        <div class="blink">
+            <a href=""><span>Alerts</span></a>
+            
+          </div>
+       </div>
+</div>
+    <h2 style="text-align: center;color: #7c1517;font-style: italic;">Lets keep our community safe and informed</h2>
+    <div class="advert">
+    <p>* report crime and alerts</p>
+    <p>* Advertise your business</p>
+    <p>* Announce meetings and functions</p>
+    </div>
+    <p></p>
+</div>
 
-{%endblock%}
+  <h1 style="text-align: center;color: #7c1517;">Various regions</h1>
+        
+        {% for region in regions %}
+        
+           
+            <div class="col-md-4">
+               <div class="panel panel-default">
+                   <div class="panel-header">
+                <img src="{{ region.image.url }}" class="card-img-top" style="height: 200px;width: 200px;"
+                alt="{{ region.name }}">
+            </div>
+                <div class="card-body">
+                    <a href="{% url 'single-region' region.id %}">Name: {{ region.name }}</a>
+                   
+                    <h5>Location: {{region.location}}</h5>
+                    <h5> Occupants: {{region.Occupants_Count}} </h5>
+                    
+                    
+                </div>
+               
+            </div>
+        </div>
+                    
+                   
+                
+            </div>
+           
+            
+          
+        {% endfor %}
+
+
+{% endblock %}
