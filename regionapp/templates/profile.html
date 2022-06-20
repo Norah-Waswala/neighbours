@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container ">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 mt-4 bg-white prof mr-2 ml-2">
+            <img class="rounded" src="{{ user.profile.profile_picture.url }}"height="300px" width="300px">
+        </div>
+            <div class="col-md-3">
+            <h5 >Username: {{user.username}}</h5>
+            <p > Email: {{user.email}}</p>
+            <p> Location: {{user.profile.location}}</p>
+            <a href="{% url 'edit-profile' user.username %} " class="btn btn-sm btn-info mb-2"> Edit Profile</a>
+            <a href="{% url 'edit-profile' user.username %} " class="btn btn-sm btn-info mb-2"> Leave Region</a>
+        </div>
+            {% if request.user.profile.neighbourhood %}
+            <p class="text-center">My Hood <a class="btn btn-sm btn-info" href="{% url 'single-hood' user.profile.neighbourhood.id %}">{{ user.profile.neighbourhood.name }}</a>
+            </p>
+            {% endif %}
+       
+        
+    </div>
+
+
+</div>
+{% endblock %}
