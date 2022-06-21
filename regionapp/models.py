@@ -52,7 +52,16 @@ class Profile(models.Model):
     def update_Profile(self):
         self.update()
 
+    
+    @receiver(post_save, sender=User)
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
 
+    @receiver(post_save, sender=User)
+    def save_user_profile(sender, instance, **kwargs):
+        instance.profile.save()
+        
 class Business(models.Model):
     name = models.CharField(max_length=120)
     email = models.EmailField(max_length=254)
@@ -74,7 +83,7 @@ class Business(models.Model):
     def search_business(cls, name):
         return cls.objects.filter(name__icontains=name).all()
 
-
+    
 class Post(models.Model):
     title = models.CharField(max_length=120, null=True)
     post = models.TextField()
