@@ -11,6 +11,22 @@ A web application that allows you to be in the loop about everything happening i
 ![screen](/static/index.png)
 ### Single region 
 ![screen](/static/maku.png)
+## User Stories
+* Sign in with the application to start using.
+* Set up a profile about me and a general location and my neighborhood name.
+* Find a list of different businesses in my neighborhood.
+* Find Contact Information for the health department and Police authorities near my 
+  neighborhood.
+* Create Posts that will be visible to everyone in my neighborhood.
+* Change My neighborhood when I decide to move out. Only view details of a single 
+  neighborhood.
+## Behaviour Driven Development (BDD)
+Behaviour|Input	|Output
+Application starts|	**On page load**	|Login page for user to login
+login page 	|**Authentication**	| a user can login in,new users to sign up
+Button click|	**Join or Leave button**|	one can decide to join a neighbourhood and also leave the neighbourhood.
+Profile Icon|	**Profile Icon click**|	User gets option to view profile, update profile and logout.On view profile user can view and also edit his or her own profile.
+Forms	|**Form filling**|	User gets to fill in various forms, and depending on various tasks the form are meant for, upon submission the act is done.
 
 ## Requirements
 The application requires the following installations to operate:
