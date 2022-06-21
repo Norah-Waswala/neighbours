@@ -1,6 +1,17 @@
-# 
+# Neighborhood
+## Name 
+Norah Waswala
 ## Project Description
 A web application that allows you to be in the loop about everything happening in your neighborhood. From contact information of different handyman to meeting announcements or even alerts.
+## Demoscreenshot
+### Landing Page
+![screenshot](/static/land.png)
+
+### Index Page 
+![screen](/static/index.png)
+### Single region 
+![screen](/static/maku.png)
+
 ## Requirements
 The application requires the following installations to operate:
 * SQL database
@@ -26,7 +37,7 @@ The application requires the following installations to operate:
 For more information, find me at my email (https://norah.waswala15@gmail.com)
 
 ## link to live site on heroku pages
-
+https://majirani2020.herokuapp.com/
 ## License and copyright information
 [MIT LICENSE](LICENSE)
 Copyright (C) [2022] [@ Norah-Waswala]
