@@ -41,7 +41,7 @@ class Profile(models.Model):
    
 
     def __str__(self):
-        return self.user.username
+        return f'{self.user.username }Profile'
     
     def save_Profile(self):
         self.save()
@@ -61,7 +61,7 @@ class Profile(models.Model):
     @receiver(post_save, sender=User)
     def save_user_profile(sender, instance, **kwargs):
         instance.profile.save()
-        
+
 class Business(models.Model):
     name = models.CharField(max_length=120)
     email = models.EmailField(max_length=254)
