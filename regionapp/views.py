@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import NeighbourHood, Profile, Business, Post
 from .forms import UpdateProfileForm, NeighbourHoodForm, PostForm,BusinessForm
+
 def signin(request):
     if request.method=="POST":
         username=request.POST["username"]
@@ -64,6 +65,20 @@ def create_region(request):
         form = NeighbourHoodForm()
     return render(request, 'add_region.html', {'form': form})
 
+def create_post(request, region_id):
+    region = NeighbourHood.objects.get(id=region_id)
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.region = region
+            post.user = request.user.profile
+            post.save()
+            return redirect('single-region', region.id)
+    else:
+        form = PostForm()
+    return render(request, 'post.html', {'form': form})
+
 @login_required(login_url='login')
 def profile(request, username):
     return render(request, 'profile.html')
@@ -103,6 +118,27 @@ def single_region(request, region_id):
         'posts': posts
     }
     return render(request, 'single-region.html', params)
+def hoods(request):
+    all_hoods = NeighbourHood.objects.all()
+    all_hoods = all_hoods[::-1]
+    params = {
+        'all_hoods': all_hoods,
+    }
+    return render(request, 'all_hoods.html', params)
+def join_hood(request, id):
+    neighbourhood = get_object_or_404(NeighbourHood, id=id)
+    request.user.profile.neighbourhood = neighbourhood
+    request.user.profile.save()
+    return redirect('hood')
+
+
+def leave_hood(request, id):
+    hood = get_object_or_404(NeighbourHood, id=id)
+    request.user.profile.neighbourhood = None
+    request.user.profile.save()
+    return redirect('hood')
+
+
 
 
 @login_required(login_url='login')

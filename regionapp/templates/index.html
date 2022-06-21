@@ -4,8 +4,8 @@
 <div class="container" id="locations" style="margin-bottom: 10px;">
     <div class="reports">
     <a href="{% url 'new-region' %} " class="btn btn-sm btn-info mb-2"> New Region</a>
-    <a href=" " class="btn btn-sm btn-info mb-2"> Join Region</a>
-    <a href="{% url 'new-region' %} " class="btn btn-sm btn-info mb-2"> Post Report</a>
+    <a href="{% url 'hood' %} " class="btn btn-sm btn-info mb-2"> Join Region</a>
+    <a href=" " class="btn btn-sm btn-info mb-2"> Post Report</a>
     <div class="search" style="float: right; ">
         <form class="form-inline" method="get" action="{% url 'search' %}" style="border: 0em; ">
             {% csrf_token %}
