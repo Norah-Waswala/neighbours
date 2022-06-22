@@ -47,9 +47,10 @@ def landing(request):
 
 @login_required(login_url='login')
 def index(request):
+    posts = Post.objects.all()
     regions = NeighbourHood.objects.all()
 
-    return render(request,'index.html',{'regions':regions})
+    return render(request,'index.html',{'regions':regions,'posts':posts})
 
 
 @login_required(login_url='login')
@@ -65,19 +66,19 @@ def create_region(request):
         form = NeighbourHoodForm()
     return render(request, 'add_region.html', {'form': form})
 
-def create_post(request, region_id):
-    region = NeighbourHood.objects.get(id=region_id)
+def create_post(request):
+    posts = Post.objects.all()
     if request.method == 'POST':
-        form = PostForm(request.POST)
+        form = PostForm(request.POST,request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
-            post.region = region
+            
             post.user = request.user.profile
             post.save()
-            return redirect('single-region', region.id)
+            return redirect('index')
     else:
         form = PostForm()
-    return render(request, 'post.html', {'form': form})
+    return render(request, 'post.html', {'form': form,'posts':posts})
 
 @login_required(login_url='login')
 def profile(request, username):

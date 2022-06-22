@@ -65,7 +65,7 @@ class Profile(models.Model):
 class Business(models.Model):
     name = models.CharField(max_length=120)
     email = models.EmailField(max_length=254)
-    business_picture = models.ImageField(upload_to='images/', default='default.png')
+    business_picture = models.ImageField(upload_to='images/',null=True)
     description = models.TextField(blank=True)
     neighbourhood = models.ForeignKey(NeighbourHood, on_delete=models.CASCADE, related_name='business')
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='owner')
@@ -87,7 +87,7 @@ class Business(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=120, null=True)
     post = models.TextField()
-    post_picture = models.ImageField(upload_to='images/', default='default.png')
+    picture = models.ImageField(upload_to='posts/', null=True)
     date = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='post_owner')
     region = models.ForeignKey(NeighbourHood, on_delete=models.CASCADE, related_name='region_post')

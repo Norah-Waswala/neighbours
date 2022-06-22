@@ -5,7 +5,7 @@
     <div class="reports">
     <a href="{% url 'new-region' %} " class="btn btn-sm btn-info mb-2"> New Region</a>
     <a href="{% url 'hood' %} " class="btn btn-sm btn-info mb-2"> Join Region</a>
-    <a href=" " class="btn btn-sm btn-info mb-2"> Post Report</a>
+    <a href="{% url 'post' %} " class="btn btn-sm btn-info mb-2"> Post Report</a>
     <div class="search" style="float: right; ">
         <form class="form-inline" method="get" action="{% url 'search' %}" style="border: 0em; ">
             {% csrf_token %}
@@ -27,9 +27,28 @@
     </div>
     <p></p>
 </div>
+<h2 style="text-align: center;color: #7c1517;">Alerts and Announcements</h2>
+<div class="row">
+{% for post in posts %}
+<div class="col-md-4">
+    <div class="panel panel-default">
+        <div class="panel-header">
+         <h1> {{post.title}}</h1>
+     <img src="{{ post.picture.url }}" class="card-img-top" style="height: 200px;width: 200px;"
+     alt="{{ region.name }}">
+ </div>
+     <div class="card-body">
+        <p>From: {{post.region}}</p> 
+         <p>{{post.post}}</p> 
+     </div>
 
+
+    </div>   
+    </div>   
+{% endfor %}
+</div>   
   <h1 style="text-align: center;color: #7c1517;">Various regions</h1>
-        
+  <div class="row">
         {% for region in regions %}
         
            
@@ -50,14 +69,7 @@
                
             </div>
         </div>
-                    
-                   
-                
-            </div>
            
-            
-          
-        {% endfor %}
-
-
+            {% endfor %}
+        </div>
 {% endblock %}
